@@ -1,0 +1,36 @@
+<div class="header">
+       <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+              <div class="container-fluid">
+                     <a class="navbar-brand" routerLink="">Quản Lí Dự Án FPoly</a>
+                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
+                            <span class="navbar-toggler-icon"></span>
+                     </button>
+                     <div class="collapse navbar-collapse" id="mynavbar">
+                            <ul class="navbar-nav me-auto">
+                                   <li class="nav-item">
+                                          <a class="nav-link" routerLink="">Trang chủ</a>
+                                   </li>
+                                   <li class="nav-item">
+                                          <a class="nav-link" routerLink="du-an">Dự án</a>
+                                   </li>
+                                   <li class="nav-item">
+                                          <a class="nav-link" routerLink="nhan-vien">Nhân viên</a>
+                                   </li>
+                                   <li class="nav-item">
+                                          <a class="nav-link" routerLink="tao-task">Task</a>
+                                   </li>
+                            </ul>
+                            <form class="d-flex nav-item dropdown">
+                                   <input class="form-control me-2" type="text" placeholder="Tìm kiếm...">
+                                   <button class="btn btn-primary" type="button">Tìm</button>
+                                   <a class="btn btn-primary mx-3 dropdown-toggle" type="button" data-bs-toggle="dropdown">Tài khoản</a>
+                                   <ul class="dropdown-menu">
+                                          <li><a class="dropdown-item" href="#">{{user.email}}</a></li>
+                                          <li><button class="dropdown-item" type="button" (click)="logout()">Đăng xuất</button></li>
+                                   </ul>
+                            </form>
+                     </div>
+              </div>
+       </nav>
+</div>
+

@@ -1,0 +1,51 @@
+<div class="app__login d-flex justify-content-center">
+       <div class="w-50 border border-dark p-3 mt-5">
+              <div class="text-center text-primary login-form">
+                     <h3>Đăng nhập</h3>
+              </div>
+              <form (ngSubmit)="login(loginForm)" #loginForm="ngForm">
+                     <div class="mb-3">
+                            <label class="form-label"><strong>Email</strong></label>
+                            <input
+                                   type="email"
+                                   class="form-control"
+                                   name="email"
+                                   placeholder="Email...."
+                                   required
+                                   ngModel
+                                   #email="ngModel"
+                            >
+                            <span
+                            class="mt-1 text-danger"
+                            *ngIf="!email?.valid && (email?.dirty || email?.touched)"
+                     >
+                     Email không được để trống !!!</span>
+                     </div>
+                     <div class="mb-3">
+                            <label class="form-label"><strong>Password</strong></label>
+                            <input
+                                   type="password"
+                                   class="form-control"
+                                   name="password"
+                                   placeholder="Password...."
+                                   required
+                                   ngModel
+                                   #password="ngModel"
+                            >
+                            <span
+                            class="mt-1 text-danger"
+                            *ngIf="!password?.valid && (password?.dirty || password?.touched)"
+                     >
+                     Password không được để trống !!!</span>
+                     </div>
+                     <div class="mb-3">
+                            <label class="form-label"><strong>User</strong></label>
+                            <select class="form-select" ngModel name="user" #priority="ngModel">
+                                   <option value="admin">Admin</option>
+                                   <option value="employee">Employee</option>
+                            </select>
+                     </div>
+                     <button type="submit" class="btn btn-primary">Đăng nhập</button>
+              </form>
+       </div>
+</div>

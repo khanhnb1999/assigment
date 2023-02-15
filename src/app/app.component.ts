@@ -1,10 +1,13 @@
-import { Component } from '@angular/core';
-
+import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+       selector: 'app-root',
+       templateUrl: './app.component.html',
 })
-export class AppComponent {
-  title = 'angular-demo';
+export class AppComponent implements OnInit {
+       users = localStorage.getItem('users');
+       constructor(private httpService: HttpClient) {}
+       ngOnInit(): void {
+
+       }
 }

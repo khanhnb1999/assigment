@@ -1,0 +1,28 @@
+<div class="app__content">
+      <div>
+              <div class="text-white text-center">
+                     <h4 class="bg-info text-white p-3">TỔNG THỂ VỀ DỰ ÁN</h4>
+              </div>
+      </div>
+      <div>
+       <div class="text-white text-center">
+              <h4 class="bg-info text-white p-3">THÀNH VIÊN CỦA NHÓM</h4>
+       </div>
+       <div>
+              <table class="table table-bordered text-center">
+                     <thead>
+                            <tr>
+                                   <th>Khu vực</th>
+                                   <th>Số lượng nhân viên</th>
+                            </tr>
+                     </thead>
+                     <tbody>
+                            <tr *ngFor="let zone of zones">
+                                   <th>{{zone.name}}</th>
+                                   <td>{{zone.employeeId.length}}</td>
+                            </tr>
+                     </tbody>
+              </table>
+       </div>
+</div>
+</div>

@@ -1,0 +1,133 @@
+
+<div class="app__project border border-dark p-3">
+       <div class="d-flex justify-content-end mt-1">
+              <button
+                     class="btn btn-success"
+                     data-bs-toggle="modal"
+                     data-bs-target="#staticBackdrop"
+                     (click)="createProject()"
+              >
+              Tạo dự án</button>
+       </div>
+       <div class="d-flex justify-content-center mt-1">
+              <div class="w-75">
+                     <table class="table table-bordered text-center">
+                            <thead>
+                                   <tr>
+                                          <th>#</th>
+                                          <th>Tên dự án</th>
+                                          <th>Ngày tạo dự án </th>
+                                          <th>Team size</th>
+                                          <th>Actions</th>
+                                   </tr>
+                            </thead>
+                            <tbody>
+                                   <tr *ngFor="let project of projects; let i = index">
+                                          <td>{{i + 1}}</td>
+                                          <td>{{project.name}}</td>
+                                          <td>{{project.startDate}}</td>
+                                          <td>{{project.team}}</td>
+                                          <td>
+                                                 <button
+                                                        class="btn btn-primary mx-1"
+                                                        data-bs-toggle="modal"
+                                                        data-bs-target="#staticBackdrop"
+                                                        (click)="setValueProject(project._id)"
+                                                 >Sửa
+                                                 </button>
+                                                 <button class="btn btn-danger" (click)="removeProject(project._id)">Xóa</button>
+                                          </td>
+                                   </tr>
+                            </tbody>
+                     </table>
+              </div>
+       </div>
+</div>
+
+<div>
+       <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+              aria-labelledby="staticBackdropLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                     <div class="modal-content">
+                            <form (ngSubmit)=" (addProjectForm)" #addProjectForm="ngForm">
+                                   <div class="modal-header">
+                                          <div class="modal-title" id="staticBackdropLabel">
+                                                 <h3 *ngIf="updateIntro.title; else createTitleProject">Cập nhật dự án</h3>
+                                                 <ng-template #createTitleProject>
+                                                        <h3>Tạo dự án</h3>
+                                                 </ng-template>
+                                          </div>
+                                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                   </div>
+                                   <div class="modal-body">
+                                          <div class="mb-3">
+                                                 <label class="form-label"><strong>Tên dự án</strong></label>
+                                                 <input
+                                                        type="text"
+                                                        class="form-control"
+                                                        ngModel
+                                                        name="name"
+                                                        required
+                                                        minlength="6"
+                                                        #name="ngModel"
+                                                        value={{getProjectValue.name}}
+                                                 >
+                                                 <span
+                                                        class="mt-1 text-danger"
+                                                        *ngIf="!name?.valid && (name?.dirty || name?.touched)"
+                                                 >
+                                                 Tên dự án không hợp lệ !!!</span>
+                                          </div>
+                                          <div class="mb-3">
+                                                 <label class="form-label"><strong>Ngày tạo dự án</strong></label>
+                                                 <input
+                                                        type="date"
+                                                        class="form-control"
+                                                        ngModel
+                                                        name="startDate"
+                                                        required
+                                                        minlength="6"
+                                                        #startDate="ngModel"
+                                                        value={{getProjectValue.startDate}}
+                                                 >
+                                                 <span
+                                                        class="mt-1 text-danger"
+                                                        *ngIf="!startDate?.valid && (startDate?.dirty || startDate?.touched)"
+                                                 >
+                                                 Ngày tạo dự án không hợp lệ !!!</span>
+                                          </div>
+                                          <div class="mb-3">
+                                                 <label class="form-label"><strong>Team size</strong></label>
+                                                 <input
+                                                        type="number"
+                                                        class="form-control"
+                                                        ngModel
+                                                        name="team"
+                                                        required
+                                                        minlength="5"
+                                                        #team="ngModel"
+                                                        value={{getProjectValue.team}}
+                                                 >
+                                                 <span
+                                                        class="mt-1 text-danger"
+                                                        *ngIf="!team?.valid && (team?.dirty || team?.touched)"
+                                                 >
+                                                 Team size không hợp lệ !!!</span>
+                                          </div>
+                                   </div>
+                                   <div class="modal-footer">
+                                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                                          <div *ngIf="updateIntro.buttonUpdate; else showButton">
+                                                 <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Cập nhật dự án</button>
+                                          </div>
+                                          <ng-template #showButton>
+                                                 <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Tạo dự án</button>
+                                          </ng-template>
+                                   </div>
+                            </form>
+                     </div>
+              </div>
+       </div>
+</div>
+
+

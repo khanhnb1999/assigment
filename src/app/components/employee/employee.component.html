@@ -1,0 +1,133 @@
+<div class="app__employee border border-dark p-3">
+       <div class="d-flex justify-content-end mt-1">
+              <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#staticBackdrop"
+                     (click)="createEmployee()">
+                     Thêm nhân viên</button>
+       </div>
+       <div class="d-flex justify-content-center mt-1">
+              <div class="w-75">
+                     <table class="table table-bordered text-center">
+                            <thead>
+                                   <tr>
+                                          <th>#</th>
+                                          <th>Tên nhân viên</th>
+                                          <th>Email</th>
+                                          <th>Phone</th>
+                                          <th>Actions</th>
+                                   </tr>
+                            </thead>
+                            <tbody>
+                                   <tr *ngFor="let employee of employees; let i = index">
+                                          <td>{{i + 1}}</td>
+                                          <td>{{employee.name}}</td>
+                                          <td>{{employee.email}}</td>
+                                          <td>{{employee.phone}}</td>
+                                          <td>
+                                                 <button class="btn btn-primary mx-1" data-bs-toggle="modal"
+                                                        data-bs-target="#staticBackdrop"
+                                                        (click)="setValueEmployee(employee._id)">Sửa
+                                                 </button>
+                                                 <button class="btn btn-danger"
+                                                        (click)="removeEmployee(employee._id)">Xóa</button>
+                                          </td>
+                                   </tr>
+                            </tbody>
+                     </table>
+              </div>
+       </div>
+</div>
+
+<div>
+       <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+              aria-labelledby="staticBackdropLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                     <div class="modal-content">
+                            <form (ngSubmit)="addEmployee(addEmployeeForm)" #addEmployeeForm="ngForm">
+                                   <div class="modal-header">
+                                          <div class="modal-title" id="staticBackdropLabel">
+                                                 <h3 *ngIf="updateIntro.title; else createTitleProject">Cập nhật nhân
+                                                        viên</h3>
+                                                 <ng-template #createTitleProject>
+                                                        <h3>Thêm nhân viên</h3>
+                                                 </ng-template>
+                                          </div>
+                                          <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                 aria-label="Close"></button>
+                                   </div>
+                                   <div class="modal-body">
+                                          <div class="mb-3">
+                                                 <label class="form-label"><strong>Tên nhân viên</strong></label>
+                                                 <input type="text" class="form-control" ngModel name="name" required
+                                                        minlength="6" #name="ngModel" value={{getEmployeeValue.name}}>
+                                                 <span class="mt-1 text-danger"
+                                                        *ngIf="!name?.valid && (name?.dirty || name?.touched)">
+                                                        Tên nhân viên không hợp lệ !!!</span>
+                                          </div>
+                                          <div class="mb-3">
+                                                 <label class="form-label"><strong>Email</strong></label>
+                                                 <input type="email" class="form-control" ngModel name="email" required
+                                                        minlength="6" #email="ngModel" value={{getEmployeeValue.email}}>
+                                                 <span class="mt-1 text-danger"
+                                                        *ngIf="!email?.valid && (email?.dirty || email?.touched)">
+                                                        Email không hợp lệ !!!</span>
+                                          </div>
+                                          <div class="mb-3">
+                                                 <label class="form-label"><strong>Password</strong></label>
+                                                 <input type="password" class="form-control" ngModel name="password"
+                                                        required minlength="5" #password="ngModel"
+                                                        value={{getEmployeeValue.password}}>
+                                                 <span class="mt-1 text-danger"
+                                                        *ngIf="!password?.valid && (password?.dirty || password?.touched)">
+                                                        Password không hợp lệ !!!</span>
+                                          </div>
+                                          <div class="mb-3">
+                                                 <label class="form-label"><strong>Zone: Khu vực</strong></label>
+                                                 <div *ngIf="!zoneName.name; else selectedZone">
+                                                        <select class="form-select" ngModel name="zone" #zone="ngModel">
+                                                               <option *ngFor="let zone of zones" value={{zone._id}}>
+                                                                      {{zone.name}}
+                                                               </option>
+                                                        </select>
+                                                 </div>
+                                                 <ng-template #selectedZone>
+                                                        <select class="form-select" name="zone" (click)="selectedChoiceZone()">
+                                                               <option value={{zoneName._id}}>
+                                                                      {{zoneName.name}}
+                                                               </option>
+                                                        </select>
+                                                 </ng-template>
+                                          </div>
+                                          <div class="mb-3">
+                                                 <label class="form-label"><strong>Link hình ảnh</strong></label>
+                                                 <input type="text" class="form-control" ngModel name="image" required
+                                                        #image="ngModel" value={{getEmployeeValue.image}}>
+                                                 <span class="mt-1 text-danger"
+                                                        *ngIf="!image?.valid && (image?.dirty || image?.touched)">
+                                                        Image không hợp lệ !!!</span>
+                                          </div>
+                                          <div class="mb-3">
+                                                 <label class="form-label"><strong>Phone</strong></label>
+                                                 <input type="text" class="form-control" ngModel name="phone" required
+                                                        #phone="ngModel" value={{getEmployeeValue.phone}}>
+                                                 <span class="mt-1 text-danger"
+                                                        *ngIf="!phone?.valid && (phone?.dirty || phone?.touched)">
+                                                        Phone không hợp lệ !!!</span>
+                                          </div>
+                                   </div>
+                                   <div class="modal-footer">
+                                          <button type="button" class="btn btn-secondary"
+                                                 data-bs-dismiss="modal">Đóng</button>
+                                          <div *ngIf="updateIntro.buttonUpdate; else showButton">
+                                                 <button type="submit" class="btn btn-primary"
+                                                        data-bs-dismiss="modal">Cập nhật nhân viên</button>
+                                          </div>
+                                          <ng-template #showButton>
+                                                 <button type="submit" class="btn btn-primary"
+                                                        data-bs-dismiss="modal">Thêm nhân viên</button>
+                                          </ng-template>
+                                   </div>
+                            </form>
+                     </div>
+              </div>
+       </div>
+</div>

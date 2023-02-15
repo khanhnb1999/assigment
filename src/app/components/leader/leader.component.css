@@ -1,0 +1,24 @@
+.app__leader {
+       background-color: #e2dede;
+}
+
+.icon__user {
+       font-size: 70px;
+}
+
+.user__intro h4 {
+       font-weight: 600;
+       text-transform: uppercase;
+}
+
+.employees p {
+       margin: 0;
+       padding: 10px 0;
+}
+
+.number__team p{
+       background-color: #509699;
+       color: white;
+       border-radius: 50%;
+       padding: 1px 10px;
+}
